@@ -4,9 +4,14 @@
   grid-template-columns: repeat(12, 1fr);
 }
 
+button {
+  padding: 0.5rem;
+}
+
 .header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 }
 
 .css-editor,
@@ -16,7 +21,7 @@
 }
 
 .html-editor {
-  grid-column: 1 / 4;
+  grid-column: 1/4;
 }
 
 .css-editor {
@@ -25,4 +30,13 @@
 
 .js-editor {
   grid-column: 8/12;
+}
+
+.add-lib-modal {
+  position: fixed;
+  left: 60%;
+  top: 30%;
+  z-index: 9999;
+  width: 5rem;
+  box-shadow: 5px 5px 5px lightblue;
 }
