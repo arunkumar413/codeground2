@@ -15,3 +15,8 @@ export const modalAtom = atom({
   key: "modal-state",
   default: false,
 });
+
+export const selectedLibraries = atom({
+  key: "selected-libraries",
+  default: [],
+});

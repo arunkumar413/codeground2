@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { cdnLibraries, modalAtom } from "./appState";
+import { cdnLibraries, modalAtom, selectedLibraries } from "./appState";
 
 export function AddLibModal() {
   const [libraries, setCdnLibraries] = useRecoilState(cdnLibraries);
   const [modalState, setModalState] = useRecoilState(modalAtom);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLib, setSelectedLibraries] = useRecoilState(selectedLibraries);
+
+  function handleSelect(evt, item) {
+    console.log(item);
+    setSelectedLibraries([...selectedLib, item.latest]);
+  }
+
+  const selLibElements = selectedLib.map(function (item, index) {
+    return (
+      <div key={index.toString()}>
+        <span> {item}</span> <span>remove</span>
+      </div>
+    );
+  });
 
   let libraryElements = libraries.map(function (item, index) {
     return (
-      <div className="modal-search-item" style={{ padding: "0.5rem" }}>
+      <div
+        onClick={(evt) => handleSelect(evt, item)}
+        key={index.toString()}
+        className="modal-search-item"
+        style={{ padding: "0.5rem" }}
+      >
         <div>{item.name}</div>
       </div>
     );
@@ -57,7 +76,8 @@ export function AddLibModal() {
           type="text"
         />
       </div>
-      {libraryElements}
+      <div style={{ height: 100, overflow: "scroll" }}>{libraryElements}</div>
+      <div className="sel-libraries">{selLibElements}</div>
     </div>
   );
 }
