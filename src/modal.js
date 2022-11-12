@@ -15,7 +15,7 @@ export function AddLibModal() {
 
   const selLibElements = selectedLib.map(function (item, index) {
     return (
-      <div key={index.toString()}>
+      <div key={index.toString()} style={{ padding: "0.5rem" }}>
         <span> {item}</span> <span>remove</span>
       </div>
     );
@@ -77,7 +77,11 @@ export function AddLibModal() {
         />
       </div>
       <div style={{ height: 100, overflow: "scroll" }}>{libraryElements}</div>
-      <div className="sel-libraries">{selLibElements}</div>
+      <div className="sel-libraries" style={{ marginTop: 10 }}>
+        <hr />
+        <h5>Libraries Addded</h5>
+        {selLibElements}
+      </div>
     </div>
   );
 }
