@@ -1,4 +1,28 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+.app-container {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.css-editor,
+.html-editor,
+.js-editor {
+  height: 80vh;
+}
+
+.html-editor {
+  grid-column: 1 / 4;
+}
+
+.css-editor {
+  grid-column: 4/8;
+}
+
+.js-editor {
+  grid-column: 8/12;
 }
