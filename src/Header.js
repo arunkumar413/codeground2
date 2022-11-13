@@ -36,6 +36,8 @@ export function Header() {
       <button className="btn primary small outlined"> HTML</button>
       <button className="btn primary small outlined"> CSS</button>
       <button className="btn primary small outlined">JavaScript</button>
+      <button className="btn primary small outlined">Reset view</button>
+
       <button className="btn primary small outlined" onClick={toggleModal}>
         Add a library
       </button>

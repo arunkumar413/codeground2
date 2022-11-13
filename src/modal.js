@@ -85,6 +85,7 @@ export function AddLibModal() {
       </div>
       <div>
         <input
+          className="input primary small filled"
           name="search-library"
           onChange={handleSearchChange}
           type="text"
