@@ -6,13 +6,27 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/mode-html";
+
+import { editorTheme, editorValues } from "./appState";
+import { useRecoilState, useRecoilValue } from "recoil";
+
 export function JsEditor() {
-  function handleChange() {}
+  const [editorVal, setEditorValues] = useRecoilState(editorValues);
+  const theme = useRecoilValue(editorTheme);
+  function handleChange(val) {
+    console.log(val);
+    setEditorValues({ ...editorVal, js: val });
+  }
+
   return (
     <div className="js-editor">
       <AceEditor
         mode="javascript"
-        theme="github"
+        theme={theme}
+        value={editorVal.js}
         onChange={handleChange}
         name="js-editor"
         editorProps={{ $blockScrolling: true }}

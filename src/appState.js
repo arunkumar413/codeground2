@@ -20,3 +20,17 @@ export const selectedLibraries = atom({
   key: "selected-libraries",
   default: [],
 });
+
+export const editorValues = atom({
+  key: "editor-values",
+  default: {
+    html: "",
+    css: "",
+    js: "",
+  },
+});
+
+export const editorTheme = atom({
+  key: "theme",
+  default: "xcode",
+});
