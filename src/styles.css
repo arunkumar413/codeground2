@@ -1,7 +1,10 @@
+body {
+  font-family: sans-serif;
+}
 .app-container {
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   font-family: sans-serif;
 }
 
@@ -13,6 +16,7 @@ button {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .css-editor,
@@ -22,15 +26,15 @@ button {
 }
 
 .html-editor {
-  grid-column: 1/4;
+  /* grid-column: 1/4; */
 }
 
 .css-editor {
-  grid-column: 4/8;
+  /* grid-column: 4/9; */
 }
 
 .js-editor {
-  grid-column: 8/12;
+  /* grid-column: 8/13; */
 }
 
 .add-lib-modal {

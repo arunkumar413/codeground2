@@ -14,9 +14,8 @@ import {
 export default function App() {
   return (
     <RecoilRoot>
+      <Header />
       <div className="app-container">
-        <Header />
-
         <HtmlEditor />
         <CssEditor />
         <JsEditor />
