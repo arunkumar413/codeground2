@@ -33,13 +33,15 @@ export function Header() {
         <option value="terminal">terminal</option>
       </select>
 
-      <button> HTML</button>
-      <button> CSS</button>
-      <button>JavaScript</button>
-      <button onClick={toggleModal}>Add a library</button>
-      <button> Fork</button>
+      <button className="btn primary small outlined"> HTML</button>
+      <button className="btn primary small outlined"> CSS</button>
+      <button className="btn primary small outlined">JavaScript</button>
+      <button className="btn primary small outlined" onClick={toggleModal}>
+        Add a library
+      </button>
+      <button className="btn primary small outlined"> Fork</button>
 
-      <button> Save</button>
+      <button className="btn small success"> Save</button>
 
       <AddLibModal />
     </div>
