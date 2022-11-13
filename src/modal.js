@@ -25,7 +25,12 @@ export function AddLibModal() {
     return (
       <div key={index.toString()} style={{ padding: "0.5rem" }}>
         <span> {item}</span>{" "}
-        <span onClick={(evt) => handleRemoveLib(evt, item)}>remove</span>
+        <span
+          style={{ backgroundColor: "red", color: "white", padding: "0.2rem" }}
+          onClick={(evt) => handleRemoveLib(evt, item)}
+        >
+          remove
+        </span>
       </div>
     );
   });
@@ -88,7 +93,7 @@ export function AddLibModal() {
       <div style={{ height: 100, overflow: "scroll" }}>{libraryElements}</div>
       <div className="sel-libraries" style={{ marginTop: 10 }}>
         <hr />
-        <h5>Libraries Addded</h5>
+        <h5>Libraries Added</h5>
         {selLibElements}
       </div>
     </div>
