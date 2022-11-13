@@ -13,10 +13,19 @@ export function AddLibModal() {
     setSelectedLibraries([...selectedLib, item.latest]);
   }
 
+  function handleRemoveLib(evt, item) {
+    console.log(item);
+    const res = selectedLib.filter(function (ele) {
+      return ele !== item;
+    });
+    setSelectedLibraries(res);
+  }
+
   const selLibElements = selectedLib.map(function (item, index) {
     return (
       <div key={index.toString()} style={{ padding: "0.5rem" }}>
-        <span> {item}</span> <span>remove</span>
+        <span> {item}</span>{" "}
+        <span onClick={(evt) => handleRemoveLib(evt, item)}>remove</span>
       </div>
     );
   });
