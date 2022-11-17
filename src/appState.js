@@ -48,3 +48,11 @@ export const loginModalAtom = atom({
   key: "loginModal",
   default: "false",
 });
+
+export const loginFormAtom = atom({
+  key: "loginForm",
+  default: {
+    email: "",
+    password: "",
+  },
+});

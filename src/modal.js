@@ -91,7 +91,7 @@ export function AddLibModal() {
           type="text"
         />
       </div>
-      <div style={{ height: 100, overflow: "scroll" }}>{libraryElements}</div>
+      <div style={{ height: 200, overflow: "scroll" }}>{libraryElements}</div>
       <div className="sel-libraries" style={{ marginTop: 10 }}>
         <hr />
         <h5>Libraries Added</h5>
