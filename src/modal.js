@@ -64,7 +64,7 @@ export function AddLibModal() {
           return res.json();
         })
         .then(function (data) {
-          console.log(data.results);
+          // console.log(data.results);
           setCdnLibraries(data.results);
         });
     },

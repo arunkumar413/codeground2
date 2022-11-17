@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { editorTheme, modalAtom, modalState } from "./appState";
+import {
+  editorTheme,
+  modalAtom,
+  modalState,
+  userLoginInfo,
+  loginModalAtom,
+} from "./appState";
+import { LoginModal } from "./LoginModal";
 import { AddLibModal } from "./modal";
 
 export function Header() {
   const setModalState = useSetRecoilState(modalAtom);
   const isModalOn = useRecoilValue(modalAtom);
   const [theme, setTheme] = useRecoilState(editorTheme);
+  const [userInfo, setUserInfo] = useRecoilState(userLoginInfo);
+  const [isLoginModalOn, setLoginModal] = useState(false);
+  const [loginModalState, setLoginAtom] = useRecoilState(loginModalAtom);
 
   function toggleModal() {
     setModalState(isModalOn === true ? false : true);
@@ -14,9 +24,32 @@ export function Header() {
 
   function handleThemeChange(evt) {
     console.log(evt.target.value);
-
     setTheme(evt.target.value);
   }
+
+  function toggleLoginModal() {
+    console.log("login clicked");
+    setLoginModal(isLoginModalOn === true ? false : true);
+    setLoginAtom(loginModalState === true ? false : true);
+  }
+
+  function handleLogout() {
+    console.log("clicked logout");
+  }
+
+  useEffect(function () {
+    let userInfo = localStorage.getItem(userInfo);
+    if (userInfo !== null) {
+      setUserInfo(function (prevState) {
+        return {
+          ...prevState,
+          sessionId: userInfo.sessionId,
+          isLoggedIn: true,
+          userName: userInfo.userName,
+        };
+      });
+    }
+  }, []);
 
   return (
     <div className="header">
@@ -44,8 +77,23 @@ export function Header() {
       <button className="btn primary small outlined"> Fork</button>
 
       <button className="btn small success"> Save</button>
+      {userInfo.isLoggedIn ? (
+        <button onClick={handleLogout} className="btn small primary outlined">
+          {" "}
+          Logout
+        </button>
+      ) : (
+        <button
+          onClick={toggleLoginModal}
+          className="btn small primary outlined"
+        >
+          {" "}
+          Login
+        </button>
+      )}
 
       <AddLibModal />
+      <LoginModal isModalOn={isLoginModalOn} />
     </div>
   );
 }

@@ -65,3 +65,20 @@ button {
 .modal-search-item:hover {
   background-color: aliceblue;
 }
+
+.LoginModal {
+  padding: 1rem;
+
+  position: fixed;
+  left: 70%;
+  top: 30%;
+  z-index: 9999;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}

@@ -34,3 +34,17 @@ export const editorTheme = atom({
   key: "theme",
   default: "xcode",
 });
+
+export const userLoginInfo = atom({
+  key: "userLoginInfo",
+  default: {
+    isLoggedIn: false,
+    userName: "",
+    sessionId: "",
+  },
+});
+
+export const loginModalAtom = atom({
+  key: "loginModal",
+  default: "false",
+});
