@@ -22,6 +22,23 @@ export function LoginModal(props) {
     });
   }
 
+  function handleLoginProcess() {
+    console.log("login process");
+    fetch("http://localhost:3000", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginForm),
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
+  }
+
   return (
     <div
       style={{ display: loginModalState === true ? "block" : "none" }}
@@ -57,7 +74,12 @@ export function LoginModal(props) {
           type="password"
           name="password"
         />
-        <button className="btn primary small success">Login</button>
+        <button
+          onClick={handleLoginProcess}
+          className="btn primary small success"
+        >
+          Login
+        </button>
       </div>
     </div>
   );
