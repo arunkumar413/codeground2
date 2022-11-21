@@ -24,7 +24,7 @@ export function LoginModal(props) {
 
   function handleLoginProcess() {
     console.log("login process");
-    fetch("http://localhost:3000", {
+    fetch("http://localhost:3004/login", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
