@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import AceEditor from "react-ace";
 
@@ -10,12 +10,38 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/mode-html";
 
-
 import { useRecoilState, useRecoilValue } from "recoil";
-import { editorTheme, editorValues } from "./appState";
+import {
+  editorTheme,
+  editorValues,
+  loginStatusAtom,
+  userLoginInfo,
+} from "./appState";
 
 export function HtmlEditor() {
   const [editorVal, setEditorValues] = useRecoilState(editorValues);
+  const [loginStatus, setLoginStatus] = useRecoilState(loginStatusAtom);
+  const [loginInfo, setLoginInfo] = useRecoilState(userLoginInfo);
+
+  useEffect(function () {
+    console.log("########### session status ###############");
+    console.log(localStorage.getItem("sessionID"));
+    let item = localStorage.getItem("sessionID");
+    let status = localStorage.getItem("sessionID") === "null" ? false : true;
+    debugger;
+
+    let code = localStorage.getItem("sessionID");
+    setLoginInfo({ ...loginInfo, isLoggedIn: status, sessionId: code });
+  }, []);
+
+  useEffect(
+    function () {
+      console.log("###### user login info ############");
+      console.log(userLoginInfo);
+    },
+    [userLoginInfo]
+  );
+
   const theme = useRecoilValue(editorTheme);
   function handleChange(val) {
     console.log(val);

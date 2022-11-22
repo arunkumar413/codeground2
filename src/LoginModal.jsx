@@ -6,11 +6,15 @@ import {
   selectedLibraries,
   loginModalAtom,
   loginFormAtom,
+  loginStatusAtom,
+  userLoginInfo,
 } from "./appState";
 
 export function LoginModal(props) {
   const [loginModalState, setLoginAtom] = useRecoilState(loginModalAtom);
   const [loginForm, setLoginForm] = useRecoilState(loginFormAtom);
+  const [loginStatus, setLoginStatus] = useRecoilState(loginStatusAtom);
+  const [loginInfo, setLoginInfo] = useRecoilState(userLoginInfo);
 
   function handleCloseLoginModal() {
     setLoginAtom(false);
@@ -22,21 +26,24 @@ export function LoginModal(props) {
     });
   }
 
-  function handleLoginProcess() {
+  async function handleLoginProcess() {
     console.log("login process");
-    fetch("http://localhost:3004/login", {
+    let res = await fetch("http://localhost:3004/login", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(loginForm),
-    })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
+    });
+
+    let data = await res.json();
+    console.log(data);
+    localStorage.setItem("sessionID", data.sessionID);
+    localStorage.setItem("email", data.email);
+
+    setLoginInfo(function (prevState) {
+      return { ...prevState, isLoggedIn: true };
+    });
   }
 
   return (

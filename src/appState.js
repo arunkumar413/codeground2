@@ -56,3 +56,16 @@ export const loginFormAtom = atom({
     password: "",
   },
 });
+
+export const loginStatusAtom = atom({
+  key: "isUserLoggedin",
+  default: {
+    isLoggedIn: false,
+    sessionID: null,
+  },
+});
+
+export const accountModalAtom = atom({
+  key: "accountModal",
+  default: false,
+});
