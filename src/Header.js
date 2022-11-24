@@ -8,6 +8,8 @@ import {
   userLoginInfo,
   loginModalAtom,
   accountModalAtom,
+  editorValues,
+  selectedLibraries,
 } from "./appState";
 import { LoginModal } from "./LoginModal";
 import { AddLibModal } from "./modal";
@@ -20,6 +22,8 @@ export function Header() {
   const [isLoginModalOn, setLoginModal] = useState(false);
   const [loginModalState, setLoginAtom] = useRecoilState(loginModalAtom);
   const [isAccountModalOn, setAcountModal] = useRecoilState(accountModalAtom);
+  const [editorVal, setEditorValues] = useRecoilState(editorValues);
+  const [selLibraries, setSelLibraries] = useRecoilState(selectedLibraries);
 
   function toggleModal() {
     setModalState(isModalOn === true ? false : true);
@@ -36,6 +40,32 @@ export function Header() {
     setLoginAtom(loginModalState === true ? false : true);
   }
 
+  async function saveSnippets() {
+    console.log("######## Save Snippets ###############");
+    console.log(editorVal.html);
+    console.log(editorVal.css);
+    console.log(editorVal.js);
+    let res = await fetch("http://localhost:3004/save-snippets", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        snippets: editorVal,
+        sessionid: userInfo.sessionId,
+        email: userInfo.email,
+        libraries: selLibraries,
+      }),
+    });
+    let data = await res.json();
+    console.log(res.status);
+    if (res.status === 201) {
+      console.log("successfully saved snippets");
+    } else {
+      console.log("error saving snippets");
+    }
+  }
+
   async function handleLogout() {
     console.log("clicked logout");
 
@@ -49,8 +79,14 @@ export function Header() {
     let data = await res.json();
     if ((data.status = "successfully logged out")) {
       localStorage.setItem("sessionID", null);
+      localStorage.setItem("email", null);
       setUserInfo(function (prevState) {
-        return { ...prevState, isLoggedIn: false, sessionId: null };
+        return {
+          ...prevState,
+          isLoggedIn: false,
+          sessionId: null,
+          email: null,
+        };
       });
     }
   }
@@ -82,7 +118,10 @@ export function Header() {
       </button>
       <button className="btn primary small outlined"> Fork</button>
 
-      <button className="btn small success"> Save</button>
+      <button onClick={saveSnippets} className="btn small success">
+        {" "}
+        Save
+      </button>
 
       <div className="account-drop-down">
         <button className="btn small outlined primary">Account</button>
@@ -104,6 +143,8 @@ export function Header() {
               Login
             </button>
           )}
+          <button className="btn small primary outlined">Settings</button>
+          {/* {userInfo.email !== null ? <button>{userInfo.email}</button> : ""} */}
         </div>
       </div>
 

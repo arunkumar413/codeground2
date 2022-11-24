@@ -21,6 +21,13 @@ export function AddLibModal() {
     setSelectedLibraries(res);
   }
 
+  useEffect(
+    function () {
+      console.log(JSON.stringify(selectedLib));
+    },
+    [selectedLib]
+  );
+
   const selLibElements = selectedLib.map(function (item, index) {
     return (
       <div key={index.toString()} style={{ padding: "0.5rem" }}>

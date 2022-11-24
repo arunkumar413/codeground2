@@ -39,7 +39,7 @@ export const userLoginInfo = atom({
   key: "userLoginInfo",
   default: {
     isLoggedIn: false,
-    userName: "",
+    email: "",
     sessionId: "",
   },
 });

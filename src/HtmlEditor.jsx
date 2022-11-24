@@ -28,10 +28,16 @@ export function HtmlEditor() {
     console.log(localStorage.getItem("sessionID"));
     let item = localStorage.getItem("sessionID");
     let status = localStorage.getItem("sessionID") === "null" ? false : true;
+    let email = localStorage.getItem("email");
     debugger;
 
     let code = localStorage.getItem("sessionID");
-    setLoginInfo({ ...loginInfo, isLoggedIn: status, sessionId: code });
+    setLoginInfo({
+      ...loginInfo,
+      isLoggedIn: status,
+      sessionId: code,
+      email: email,
+    });
   }, []);
 
   useEffect(

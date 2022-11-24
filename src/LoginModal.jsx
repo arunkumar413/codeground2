@@ -38,12 +38,20 @@ export function LoginModal(props) {
 
     let data = await res.json();
     console.log(data);
-    localStorage.setItem("sessionID", data.sessionID);
-    localStorage.setItem("email", data.email);
+    if (data.status === "login success") {
+      localStorage.setItem("sessionID", data.sessionID);
+      localStorage.setItem("email", data.email);
 
-    setLoginInfo(function (prevState) {
-      return { ...prevState, isLoggedIn: true };
-    });
+      setLoginInfo(function (prevState) {
+        return {
+          ...prevState,
+          isLoggedIn: true,
+          email: data.email,
+          sessionId: data.sessionID,
+        };
+      });
+    }
+    setLoginAtom(false);
   }
 
   return (

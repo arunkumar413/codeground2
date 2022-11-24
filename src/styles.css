@@ -112,5 +112,9 @@ button {
 }
 
 .account-drop-down:hover .dropdown-content {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
