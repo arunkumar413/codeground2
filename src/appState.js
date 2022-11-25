@@ -77,3 +77,8 @@ export const settingsAtom = atom({
     theme: localStorage.getItem("theme"),
   },
 });
+
+export const iframeContent = atom({
+  key: "iframe-content",
+  default: `<htm>  </html>`,
+});

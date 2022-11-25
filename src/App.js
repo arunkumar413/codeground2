@@ -10,9 +10,14 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const [state, setState] = useState("<h2> hello word </h2>");
+
+  // srcDoc={ReactDOMServer.renderToString(srcDoc)}  convert react component to html
+  // https://stackoverflow.com/questions/34743264/how-to-set-iframe-content-of-a-react-component
+
   return (
     <RecoilRoot>
       <Header />
@@ -20,6 +25,14 @@ export default function App() {
         <HtmlEditor />
         <CssEditor />
         <JsEditor />
+        <iframe
+          width={500}
+          height={500}
+          // src="https://localhost:4000/view/23"
+          srcDoc={ReactDOMServer.renderToString(srcDoc)}
+          // srcDoc={state}
+          title="view snippet"
+        />
       </div>
     </RecoilRoot>
   );
