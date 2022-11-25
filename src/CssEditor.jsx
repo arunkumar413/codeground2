@@ -9,14 +9,14 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/mode-html";
 
-import { editorTheme, editorValues } from "./appState";
+import { editorTheme, editorValues, settingsAtom } from "./appState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 export function CssEditor() {
   const [editorVal, setEditorValues] = useRecoilState(editorValues);
   const theme = useRecoilValue(editorTheme);
+  const settings = useRecoilValue(settingsAtom);
   function handleChange(val) {
-    console.log(val);
     setEditorValues({ ...editorVal, css: val });
   }
 
@@ -27,6 +27,7 @@ export function CssEditor() {
         theme={theme}
         onChange={handleChange}
         value={editorVal.css}
+        fontSize={settings.fontSize}
         name="css-editor"
         editorProps={{ $blockScrolling: true }}
         setOptions={{

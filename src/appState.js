@@ -69,3 +69,11 @@ export const accountModalAtom = atom({
   key: "accountModal",
   default: false,
 });
+
+export const settingsAtom = atom({
+  key: "settings",
+  default: {
+    fontSize: 18,
+    theme: localStorage.getItem("theme"),
+  },
+});
