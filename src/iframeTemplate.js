@@ -36,14 +36,13 @@ export function IframeComponent() {
     </head>
     <body>
     ${editVals.html}
-    <h2> Hello world </h2>
       <script>${editVals.js}</script>
     </body>
   </html>`;
 
   return (
     <iframe
-      width={500}
+      width={'100%'}
       height={500}
       src="https://localhost:4000/view/23"
       // srcDoc={ReactDOMServer.renderToString(iframeInnerContent)}
