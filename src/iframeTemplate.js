@@ -1,6 +1,6 @@
 import react, { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { editorValues } from "./appState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { editorValues, selectedLibraries } from "./appState";
 
 export function IframeTemplate(props) {
   return (
@@ -24,6 +24,13 @@ export function IframeTemplate(props) {
 export function IframeComponent() {
   const [state, setState] = useState("<h2> hello word </h2>");
   const editVals = useRecoilValue(editorValues);
+  const [selLibs, setSelLibs] = useRecoilState(selectedLibraries);
+
+  const libScripts = selLibs.map(function (item, index) {
+    return `<script src = ${item}> </script>`;
+  });
+
+  console.log(libScripts.join(""));
 
   const content = ` <html>
     <head>
@@ -37,12 +44,13 @@ export function IframeComponent() {
     <body>
     ${editVals.html}
       <script>${editVals.js}</script>
+      ${libScripts.join('')}
     </body>
   </html>`;
 
   return (
     <iframe
-      width={'100%'}
+      width={"100%"}
       height={500}
       src="https://localhost:4000/view/23"
       // srcDoc={ReactDOMServer.renderToString(iframeInnerContent)}
