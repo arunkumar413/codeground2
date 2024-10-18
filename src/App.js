@@ -33,6 +33,11 @@ export default function App() {
   return (
     <RecoilRoot>
       <Header />
+      <div className="editor-heading-contianer">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+      </div>
       <div className="app-container">
         <HtmlEditor />
         <CssEditor />
@@ -45,7 +50,9 @@ export default function App() {
           srcDoc={state}
           title="view snippet"
         /> */}
-        <IframeComponent/>
+      </div>
+      <div>
+        <IframeComponent />
       </div>
     </RecoilRoot>
   );

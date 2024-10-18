@@ -44,7 +44,7 @@ export function IframeComponent() {
     <body>
     ${editVals.html}
       <script>${editVals.js}</script>
-      ${libScripts.join('')}
+      ${libScripts.join("")}
     </body>
   </html>`;
 
@@ -56,6 +56,7 @@ export function IframeComponent() {
       // srcDoc={ReactDOMServer.renderToString(iframeInnerContent)}
       srcDoc={content}
       title="view snippet"
+      style={{ width: "100vw" }}
     />
   );
 }

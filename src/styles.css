@@ -54,7 +54,6 @@ button {
   grid-template-columns: repeat(2, 1fr);
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem;
 }
 
 .modal-header-close-button {
@@ -117,4 +116,13 @@ button {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.editor-heading-contianer {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  font-family: sans-serif;
+  justify-content: center;
+  align-items: center;
 }
